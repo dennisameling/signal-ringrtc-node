@@ -14,9 +14,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 /* tslint:disable max-classes-per-file */
-const os = require('os');
+const os = require("os");
+const process = require("process");
+// npm_config_arch can be used for cross-compilation scenarios, i.e. for cross-compiling from x64 to arm64.
 // tslint:disable-next-line no-var-requires no-require-imports
-const Native = require('../../build/' + os.platform() + '/libringrtc.node');
+const Native = require('../../build/' + os.platform() + '/libringrtc-' + process.env.npm_config_arch || process.arch + '.node');
 // tslint:disable-next-line no-unnecessary-class
 class NativeCallManager {
     constructor() {

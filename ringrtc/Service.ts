@@ -5,10 +5,13 @@
 
 /* tslint:disable max-classes-per-file */
 
-const os = require('os');
+import * as os from 'os';
+import * as process from 'process';
 
+// npm_config_arch can be used for cross-compilation scenarios, i.e. for cross-compiling from x64 to arm64.
 // tslint:disable-next-line no-var-requires no-require-imports
-const Native = require('../../build/' + os.platform() + '/libringrtc.node');
+const arch = process.env.npm_config_arch || process.arch;
+const Native = require('../../build/' + os.platform() + '/libringrtc-' + arch + '.node');
 
 // tslint:disable-next-line no-unnecessary-class
 class NativeCallManager {
